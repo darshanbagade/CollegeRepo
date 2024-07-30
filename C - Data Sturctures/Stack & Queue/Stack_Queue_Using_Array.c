@@ -132,8 +132,9 @@ int dequeue(int queue_arr[])
         printf("--Queue underflow--\n");
     }
     else if(front==rear){
-            value=queue_arr[front];
-            front++;
+        value=queue_arr[front];            
+        front=-1;
+        rear=-1;
     }
     else{
             value=queue_arr[front];
