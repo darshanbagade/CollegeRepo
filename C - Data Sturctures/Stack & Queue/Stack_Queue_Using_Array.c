@@ -132,7 +132,7 @@ int dequeue(int queue_arr[])
         printf("--Queue underflow--\n");
     }
     else if(front==rear){
-        value=queue_arr[front];            
+        value=queue_arr[front];
         front=-1;
         rear=-1;
     }
@@ -148,11 +148,11 @@ int peek_queue(int queue_arr[]){
         printf("--Stack is empty--\n");
         return;
     }
-    return queue_arr[rear];
+    return queue_arr[front];
 }
 //case 4: display_queue
 void display_queue(int queue_arr[]){
-    for(int i=rear ; i>=front ;i--){
+    for(int i=front ; i>=rear ;i--){
         printf("%d\n",queue_arr[i]);
     }
 }
