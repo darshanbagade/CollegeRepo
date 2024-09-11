@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include<stdlib.h>
 //------------------------for stack------------------------------------
 int top=-1;
 int data;
@@ -31,7 +32,7 @@ int pop(int stack_arr[]){
 int peek(int stack_arr[]){
     if(top==-1){
         printf("--Stack is empty--\n");
-        return;
+        return -1;
     }
     return stack_arr[top];
 }
@@ -146,7 +147,7 @@ int dequeue(int queue_arr[])
 int peek_queue(int queue_arr[]){
     if(front==-1){
         printf("--Stack is empty--\n");
-        return;
+        return -1;
     }
     return queue_arr[front];
 }
