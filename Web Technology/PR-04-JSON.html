@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practical-04 JSON</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h2>Programming Books:</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Edition</th>
+                <th>Publication Year</th>
+            </tr>
+        </thead>
+        <tbody id="table-body">
+            <!-- Rows will be inserted here by JavaScript -->
+        </tbody>
+    </table>
+    
+    <script>
+        // Thi is JSON Data
+        const bookData = [
+            {
+                "title": "Introduction to Algorithms",
+                "author": "Thomas H. Cormen, Charles E. Leiserson <br> and Clifford Stein",
+                "edition": "3rd",
+                "publicationYear": 2009
+            },
+            {
+                "title": "Clean Code: A Handbook of Agile Software Craftsmanship",
+                "author": "Robert C. Martin",
+                "edition": "1st",
+                "publicationYear": 2008
+            },
+            {
+                "title": "JavaScript: The Good Parts",
+                "author": "Douglas Crockford",
+                "edition": "1st",
+                "publicationYear": 2008
+            },
+            {
+                "title": "The Pragmatic Programmer: Your Journey to Mastery",
+                "author": "Andrew Hunt and David Thomas",
+                "edition": "2nd",
+                "publicationYear": 2019
+            },
+            {
+                "title": "You Don't Know JS Yet: Scope & Closures",
+                "author": "Kyle Simpson",
+                "edition": "2nd",
+                "publicationYear": 2020
+            }
+        ];
+
+        //function for display the data on html page using javascript
+        function displayBooks(books) {
+            const tableBody = document.getElementById("table-body");
+
+            books.forEach((book) => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${book.title}</td>
+                    <td>${book.author}</td>
+                    <td>${book.edition}</td>
+                    <td>${book.publicationYear}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+        displayBooks(bookData);
+    </script>
+</body>
+</html>
