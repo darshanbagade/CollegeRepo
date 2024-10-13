@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dialogue Boxes</title>
+
+</head>
+<body>
+    <h2>Dialogue Boxes</h2>
+    <button onclick="showAlert()">Show Alert</button>&nbsp;&nbsp;
+    <button onclick="showConfirm()">Show Confirm</button>&nbsp;&nbsp;
+    <button onclick="showPrompt()">Show Prompt</button>
+
+
+    <script>
+
+        // Alert box
+        function showAlert() {
+            alert("This is an alert box!");
+        }
+
+        // Confirm box
+        function showConfirm() {
+            let result = confirm("Are you sure?");
+            if (result) {
+                alert("You pressed OK!");
+            } else {
+                alert("You pressed Cancel!");
+            }
+        }
+
+        // Prompt box
+        function showPrompt() {
+            let name = prompt("What is your name?");
+            if (name != null) {
+                alert("Hello " + name + "! ");
+            } else {
+                alert("You canceled the prompt.");
+            }
+        }
+    </script>
+</body>
+</html>
