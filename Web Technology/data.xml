@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+    <student>
+        <name>Rahul Sharma</name>
+        <age>24</age>
+        <major>Engineering</major>
+    </student>
+    <student>
+        <name>Anjali Patel</name>
+        <age>22</age>
+        <major>Biology</major>
+    </student>
+    <student>
+        <name>Vikram Singh</name>
+        <age>23</age>
+        <major>Physics</major>
+    </student>
+    <student>
+        <name>Priya Kapoor</name>
+        <age>21</age>
+        <major>Chemistry</major>
+    </student>
+    <student>
+        <name>Amitabh Verma</name>
+        <age>25</age>
+        <major>Mathematics</major>
+    </student>
+</data>

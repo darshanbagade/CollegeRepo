@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loops Demonstration</title>
+    <style>
+        body{
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 80vh;
+            max-width: 35%;
+            margin: auto;
+            margin-top: 50px;
+            border: 2px solid black;
+            border-radius: 5px;
+            background-color: rgb(244, 255, 255);
+            box-shadow: 0px 0px 6px rgb(211, 45, 205);
+        }
+        .display-table{
+            display: flex;
+            height: 320px;
+            justify-content: space-around;
+            width: 80%;
+            margin-top: 20px;
+            border-style: double ;
+            border-left: none;
+            border-right: none;
+            
+        }
+        button{
+            background-color: rgb(244, 255, 255);
+            border-radius: 3px;
+            padding: 5px;
+            
+        }
+        button:active{
+            background-color: rgb(244, 255, 255);
+            
+            box-shadow:  0px 0px 4px black;
+        }
+      
+        
+    </style>
+</head>
+<body>
+    <div>
+        <h2>Multiplication Table using Loops</h2>
+        <input type="number" id="num" placeholder="Enter the number">
+        <br><br>
+        
+        <button onclick="displayTableUsingWhile()">Display Table (While Loop)</button>&nbsp;&nbsp;&nbsp;
+        <button onclick="displayTableUsingFor()">Display Table (For Loop)</button>
+    </div>
+    <div class="display-table">
+        <div>
+            <h3>Using While Loop:</h3>
+            <p id="while-loop-output">Table will appear here</p>
+        </div>
+
+        <div>
+            <h3>Using For Loop:</h3>
+            <p id="for-loop-output">Table will appear here</p>
+        </div>
+        
+
+    </div>
+
+    <script>
+        // Function to display multiplication table using while loop
+        function displayTableUsingWhile() {
+            let num = parseFloat(document.getElementById("num").value);
+            let i = 1;
+            let table = ""; // Empty string to hold the result
+
+            while (i <= 10) {
+                let result = num * i;
+                table += num + " x " + i + " = " + result + "<br>";
+                i++;
+            }
+
+            document.getElementById("while-loop-output").innerHTML = table;
+        }
+
+        // Function to display multiplication table using for loop
+        function displayTableUsingFor() {
+            let num = parseFloat(document.getElementById("num").value);
+            let table = ""; // Empty string to hold the result
+
+            for (let i = 1; i <= 10; i++) {
+                let result = num * i;
+                table += num + " x " + i + " = " + result + "<br>";
+            }
+
+            document.getElementById("for-loop-output").innerHTML = table;
+        }
+    </script>
+</body>
+</html>
+

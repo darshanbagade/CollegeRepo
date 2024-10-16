@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            display: flex;
+            flex-direction: column;
+            justify-content:  center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f2f2f2;
+        }
+        #load-button{
+            padding: 10px 20px;
+            background-color: #0651ff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        } 
+        #load-button:hover{
+           
+            background-color: #023dc8;
+            
+        }
+        #data-table{
+            height: 400px;
+            margin-top: 20px;
+            border-collapse: collapse;
+            width: 50%;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <button id="load-button">Load Content</button>
+
+    <table id="data-table" border="1">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Major</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('load-button').addEventListener('click', loadContent);
+        });
+
+        function loadContent() {
+            fetch('data.xml')
+                .then(response => response.text())
+                .then(data => {
+                    const parser = new DOMParser();
+                    const xmlDoc = parser.parseFromString(data, 'text/xml');
+                    const tableBody = document.querySelector('#data-table tbody');
+                    const students = xmlDoc.getElementsByTagName('student');
+
+                    for (let i = 0; i < students.length; i++) {
+                        const row = document.createElement('tr');
+                        row.style.textAlign = 'center';
+                        const name = students[i].getElementsByTagName('name')[0].textContent;
+                        const age = students[i].getElementsByTagName('age')[0].textContent;
+                        const major = students[i].getElementsByTagName('major')[0].textContent;
+
+                        row.innerHTML = `<td>${name}</td><td>${age}</td><td>${major}</td>`;
+                        tableBody.appendChild(row);
+                    }
+                })
+                .catch(error => console.error('Error fetching the XML file:', error));
+        }
+    </script>
+</body>
+</html>
