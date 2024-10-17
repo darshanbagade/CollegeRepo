@@ -32,6 +32,6 @@ int main(){
         printf("Do you want to continue insertion of element(1/0):");
         scanf("%d",&choice);
     }
-    printf("Display of Linked list:\n")
+    printf("Display of Linked list:\n");
     display(head);
 }
