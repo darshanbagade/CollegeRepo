@@ -1,82 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Reads the XML data using JavaScript</title>
+
     <style>
-        body{
+        body {
             display: flex;
             flex-direction: column;
-            justify-content:  center;
             align-items: center;
-            height: 100vh;
-            background-color: #f2f2f2;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: 500;
+            margin: 30px;
         }
-        #load-button{
-            padding: 10px 20px;
-            background-color: #0651ff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            margin-bottom: 20px;
-        } 
-        #load-button:hover{
-           
-            background-color: #023dc8;
-            
-        }
-        #data-table{
-            height: 400px;
-            margin-top: 20px;
+
+        table {
             border-collapse: collapse;
-            width: 50%;
-            margin: 0 auto;
+            width: 70%;
+        }
+
+        th,
+        td {
+            text-align: left;
+            border:1px solid black;
+            padding: 8px;
+        }
+
+        tr{
+            background-color: #addff9;
+            border:1px solid black;
+        }
+
+        th {
+            background-color: #25b5ea;
+            color: black;
+        }
+
+        .button {
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            text-align: center;
+            padding: 0 15px;
+            margin-top: 5px;
+            background: #25b5ea;
+            border: 0px;
+            color: rgb(5, 1, 1);
+            outline: none;
+            border-radius: 10px;
+            font-size: 24px;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        .button:hover {
+
+            background: #2a83ff;
+
         }
     </style>
+
+    <!-- JavaScript -->
+
 </head>
+
 <body>
-    <button id="load-button">Load Content</button>
+    <center>
+        <button type="button" class="button" onclick="loadXMLDoc()">Load Data</button>
+    </center>
+    <br><br>
+    <table id="id"></table>
 
-    <table id="data-table" border="1">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Age</th>
-                <th>Major</th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
-    
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('load-button').addEventListener('click', loadContent);
-        });
+        function loadXMLDoc() {
+            let xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function () {
+                // Request finished and response is ready and Status is "OK"
+                if (this.readyState == 4 && this.status == 200) {
+                    empDetails(this);
+                }
+            };
+            // employee.xml is the external xml file
+            xmlhttp.open("GET", "employee.xml", true);
+            xmlhttp.send();
+        }
 
-        function loadContent() {
-            fetch('data.xml')
-                .then(response => response.text())
-                .then(data => {
-                    const parser = new DOMParser();
-                    const xmlDoc = parser.parseFromString(data, 'text/xml');
-                    const tableBody = document.querySelector('#data-table tbody');
-                    const students = xmlDoc.getElementsByTagName('student');
+        function empDetails(xml) {
+            let i;
+            let xmlDoc = xml.responseXML;
+            let table = `
+                <tr>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                    <th>Title</th>
+                    <th>Division</th>
+                    <th>Building</th>
+                    <th>Room</th>
+                </tr>`;
+            let x = xmlDoc.getElementsByTagName("employee");
 
-                    for (let i = 0; i < students.length; i++) {
-                        const row = document.createElement('tr');
-                        row.style.textAlign = 'center';
-                        const name = students[i].getElementsByTagName('name')[0].textContent;
-                        const age = students[i].getElementsByTagName('age')[0].textContent;
-                        const major = students[i].getElementsByTagName('major')[0].textContent;
+            // Start to fetch the data by using TagName
+            for (i = 0; i < x.length; i++) {
+                table += "<tr><td>" +
+                    x[i].getElementsByTagName("firstname")[0].childNodes[0].nodeValue + "</td><td>" +
+                    x[i].getElementsByTagName("lastname")[0].childNodes[0].nodeValue + "</td><td>" +
+                    x[i].getElementsByTagName("title")[0].childNodes[0].nodeValue + "</td><td>" +
+                    x[i].getElementsByTagName("division")[0].childNodes[0].nodeValue + "</td><td>" +
+                    x[i].getElementsByTagName("building")[0].childNodes[0].nodeValue + "</td><td>" +
+                    x[i].getElementsByTagName("room")[0].childNodes[0].nodeValue + "</td></tr>";
+            }
 
-                        row.innerHTML = `<td>${name}</td><td>${age}</td><td>${major}</td>`;
-                        tableBody.appendChild(row);
-                    }
-                })
-                .catch(error => console.error('Error fetching the XML file:', error));
+            // Print the xml data in table form
+            document.getElementById("id").innerHTML = table;
         }
     </script>
 </body>
+
 </html>
