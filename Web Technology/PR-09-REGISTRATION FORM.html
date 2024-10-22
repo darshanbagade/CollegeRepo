@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Page</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, sans-serif;
+            margin-top: 120px;
+        }
+        .title{
+            font-size: 26px;
+        }
+        .form-container {
+            display: flex;
+            width: 30%;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            padding: 24px 40px;
+            box-shadow: 0 0px 8px rgba(0, 0, 0, 0.3);
+            background-color: #f9fafb;
+        }
+
+        .form-container input {
+            width: 100%;
+            padding: 10px 10px;
+            margin: 10px 0;
+            border: 1px solid #000000;
+            border-radius: 4px;
+            background-color: #f3f4f6;
+        }
+
+        .form-container button {
+            padding: 12px;
+            background-color: #1f2937;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            width: 30%;
+            margin: 8px 0;
+        }
+
+        .form-container button:hover {
+            background-color: #111827;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <div class="title"><b>Registration Form</b></div>
+        <input type="text" id="name" placeholder="Name">
+        <input type="tel" id="mobile" placeholder="Phone Number">
+        <input type="email" id="email" placeholder="Email">
+        <input type="password" id="password" placeholder="Enter Your Password">
+        <input type="text" id="address" placeholder="Address">
+        <button type="submit" id="submitBtn">Submit</button>
+    </div>
+
+    <script>
+        function validateForm() {
+            const firstName = document.getElementById('name').value;
+            const password = document.getElementById('password').value;
+            const email = document.getElementById('email').value;
+            const mobile = document.getElementById('mobile').value;
+            const address = document.getElementById('address').value;
+
+            let messages = [];
+            if (!/^[a-zA-Z]{6,}$/.test(firstName)) {
+                messages.push("Name must contain alphabets and be at least 6 characters long.");
+            }
+
+            if (password.length < 6) {
+                messages.push("Password must be at least 6 characters long.");
+            }
+
+            const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            if (!emailPattern.test(email)) {
+                messages.push("enter proper email");
+            }
+
+            if (!/^\d{10}$/.test(mobile)) {
+                messages.push("Mobile Number must contain10 digits.");
+            }
+
+            if (address.trim() === "") {
+                messages.push("Address cannot be empty.");
+            }
+
+            if (messages.length > 0) {
+                alert(messages.join("\n"));
+                return false; 
+            } else {
+                alert("Data is valid!");
+                return true;
+            }
+        }
+
+        document.getElementById('submitBtn').onclick = function(event) {
+            event.preventDefault();
+            validateForm();
+        };
+    </script>
+
+</body>
+</html>
