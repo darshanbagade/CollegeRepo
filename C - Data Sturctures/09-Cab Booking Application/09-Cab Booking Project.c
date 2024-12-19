@@ -2,13 +2,11 @@
 #include <stdlib.h>
 #include <string.h>
 
-// Structure for storing Cab information
 typedef struct {
     int cab_id;
-    int is_booked;
+    int is_booked; 
 } Cab;
 
-//structure for storing booked cab information
 struct Customer {
     char name[50];
     int phone;
@@ -16,17 +14,14 @@ struct Customer {
     struct Customer* next;
 };
 
-
 struct Customer* head = NULL;
-
 
 void initializeCabs(Cab cabs[], int n) {
     for (int i = 0; i < n; i++) {
         cabs[i].cab_id = i + 1;
-        cabs[i].is_booked = 0;
+        cabs[i].is_booked = 0; 
     }
 }
-
 
 void displayAvailableCabs(Cab cabs[], int n) {
     printf("Available Cabs:\n");
@@ -41,31 +36,27 @@ void bookCab(Cab cabs[], int n) {
     int cab_id;
     char name[50];
     int phone;
-
-
+    
     displayAvailableCabs(cabs, n);
-
-
+    
     printf("Enter your name: ");
     scanf("%s", name);
     printf("Enter your phone number: ");
     scanf("%d", &phone);
-
+    
     printf("Enter the Cab ID to book: ");
     scanf("%d", &cab_id);
-
-
+    
     if (cab_id > 0 && cab_id <= n && cabs[cab_id - 1].is_booked == 0) {
         cabs[cab_id - 1].is_booked = 1;
-
-
+        
         struct Customer* new_customer = (struct Customer*)malloc(sizeof(struct Customer));
         strcpy(new_customer->name, name);
         new_customer->phone = phone;
         new_customer->cab_id = cab_id;
         new_customer->next = head;
         head = new_customer;
-
+        
         printf("Cab %d has been successfully booked by %s!\n", cab_id, name);
     } else {
         printf("Sorry, this cab is already booked or invalid cab ID!\n");
@@ -74,7 +65,7 @@ void bookCab(Cab cabs[], int n) {
 
 void displayBookedCabs() {
     struct Customer* temp = head;
-
+    
     if (temp == NULL) {
         printf("No cabs are booked currently.\n");
     } else {
@@ -86,23 +77,21 @@ void displayBookedCabs() {
     }
 }
 
-
 void cancelBooking(Cab cabs[], int n) {
     int cab_id;
     printf("Enter the Cab ID to cancel booking: ");
     scanf("%d", &cab_id);
-
+    
     if (cab_id > 0 && cab_id <= n && cabs[cab_id - 1].is_booked == 1) {
         cabs[cab_id - 1].is_booked = 0;
-
-
+        
         struct Customer *temp = head, *prev = NULL;
-
+        
         while (temp != NULL && temp->cab_id != cab_id) {
             prev = temp;
             temp = temp->next;
         }
-
+        
         if (temp != NULL) {
             if (prev == NULL) {
                 head = temp->next;
@@ -118,12 +107,12 @@ void cancelBooking(Cab cabs[], int n) {
 }
 
 int main() {
-    int n = 5;
+    int n = 5; 
     Cab cabs[n];
     int choice;
-
+    
     initializeCabs(cabs, n);
-
+    
     while (1) {
         printf("\n--- Cab Booking System ---\n");
         printf("1. Book a Cab\n");
@@ -132,7 +121,7 @@ int main() {
         printf("4. Exit\n");
         printf("Enter your choice: ");
         scanf("%d", &choice);
-
+        
         switch (choice) {
             case 1:
                 bookCab(cabs, n);
@@ -149,6 +138,6 @@ int main() {
                 printf("Invalid choice! Please try again.\n");
         }
     }
-
+    
     return 0;
 }
