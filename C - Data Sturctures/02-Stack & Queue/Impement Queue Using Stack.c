@@ -8,7 +8,7 @@ int top2=-1;
 int count=0;
 int value;
 void enque(int data){
-    int b=push1(data);
+    push1(data);
     count++;
 }
 void dequeue(){
