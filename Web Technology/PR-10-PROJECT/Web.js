@@ -116,3 +116,43 @@ function addCart(){
     alert("Added To Cart");
     location.reload()
 }
+
+
+
+//for form validation
+// Function to validate email format
+function validateEmail(email) {
+    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    return emailPattern.test(email);
+}
+
+// Function to validate phone number (Indian phone number example)
+function validatePhone(phone) {
+    const phonePattern = /^[6-9]\d{9}$/;  // Accepts 10 digit numbers starting from 6-9
+    return phonePattern.test(phone);
+}
+
+// Handling form submission
+document.getElementById("contactForm").addEventListener("submit", function(event) {
+    const email = document.getElementById("email").value;
+    const phone = document.getElementById("phone").value;
+    
+    let valid = true;
+    
+    // Email Validation
+    if (!validateEmail(email)) {
+        alert("Please enter a valid email address.");
+        valid = false;
+    }
+    
+    // Phone Validation
+    if (!validatePhone(phone)) {
+        alert("Please enter a valid phone number (10 digits).");
+        valid = false;
+    }
+
+    // Prevent form submission if validation fails
+    if (!valid) {
+        event.preventDefault();
+    }
+});
