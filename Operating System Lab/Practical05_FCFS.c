@@ -39,10 +39,17 @@ void fcfs(int n, int arrival_time[], int burst_time[], int completion_time[], in
 }
 
 void display(int n, int arrival_time[], int burst_time[], int completion_time[], int waiting_time[], int turnaround_time[], int process_id[]) {
+    float total_tat = 0, total_wt = 0;
+    
     printf("\nPID\tArrival\tBurst\tCompletion\tTurnaround\tWaiting\n");
     for (int i = 0; i < n; i++) {
-        printf("%d \t\t %d \t\t %d \t\t %d \t\t %d \t\t %d\n", process_id[i], arrival_time[i], burst_time[i], completion_time[i], turnaround_time[i], waiting_time[i]);
+        printf("%d\t%d\t%d\t%d\t%d\t%d\n", process_id[i], arrival_time[i], burst_time[i], completion_time[i], turnaround_time[i], waiting_time[i]);
+        total_tat += turnaround_time[i];
+        total_wt += waiting_time[i];
     }
+    
+    printf("\nAverage Turnaround Time: %.2f", total_tat / n);
+    printf("\nAverage Waiting Time: %.2f\n", total_wt / n);
 }
 
 int main() {
