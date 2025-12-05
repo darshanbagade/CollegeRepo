@@ -1,0 +1,109 @@
+if (b1.equals(e.getSource())) {
+//            setGreenColor(seatOne);
+//        }
+//        if (b2.equals(e.getSource())) {
+//            setGreenColor(seatTwo);
+//        }
+//        if (b3.equals(e.getSource())) {
+//            setGreenColor(seatThree);
+//        }
+//        if (b4.equals(e.getSource())) {
+//            setGreenColor(seatFour);
+//        }
+//        if (b5.equals(e.getSource())) {
+//            setGreenColor(seatTwo);
+//        }
+//        if (b6.equals(e.getSource())) {
+//            setGreenColor(seatTwo);
+//        }
+//        if (b7.equals(e.getSource())) {
+//            setGreenColor(seatTwo);
+//        }
+//        if (b8.equals(e.getSource())) {
+//            setGreenColor(seatTwo);
+//        }
+//        if (b9.equals(e.getSource())) {
+//            setGreenColor(seatTwo);
+//        }
+//        if (b10.equals(e.getSource())) {
+//            setGreenColor(seatTwo);
+//        }
+//        if (b11.equals(e.getSource())) {
+//            setGreenColor(seatTwo);
+//        }
+//        if (b12.equals(e.getSource())) {
+//            setGreenColor(seatTwo);
+//        }
+//        if (b13.equals(e.getSource())) {
+//            setGreenColor(seatTwo);
+//        }
+//        if (b14.equals(e.getSource())) {
+//            setGreenColor(seatTwo);
+//        }
+//        if (b15.equals(e.getSource())) {
+//            setGreenColor(seatTwo);
+//        }
+//        if (b16.equals(e.getSource())) {
+//            setGreenColor(seatTwo);
+//        }
+
+//        panel.add(b1);
+//        panel.add(b2);
+//        panel.add(b3);
+//        panel.add(b4);
+//        panel.add(b5);
+//        panel.add(b6);
+//        panel.add(b7);
+//        panel.add(b8);
+//        panel.add(b9);
+//        panel.add(b10);
+//        panel.add(b11);
+//        panel.add(b12);
+//        panel.add(b13);
+//        panel.add(b14);
+//        panel.add(b15);
+//        panel.add(b16);
+//        panel.add(b17);
+
+//        b1.setText("1");
+//        b2.setText("2");
+//        b3.setText("3");
+//        b4.setText("4");
+//        b5.setText("5");
+//        b6.setText("6");
+//        b7.setText("7");
+//        b8.setText("8");
+//        b9.setText("9");
+//        b10.setText("10");
+//        b11.setText("11");
+//        b12.setText("12");
+//        b13.setText("13");
+//        b14.setText("14");
+//        b15.setText("15");
+//        b16.setText("16");
+//        b17.setText("17");
+//        b18.setText("18");
+
+
+//        b1.addActionListener(this);
+//        b2.addActionListener(this);
+//        b3.addActionListener(this);
+//        b4.addActionListener(this);
+//        b5.addActionListener(this);
+//        b6.addActionListener(this);
+//        b7.addActionListener(this);
+//        b8.addActionListener(this);
+//        b9.addActionListener(this);
+//        b10.addActionListener(this);
+//        b11.addActionListener(this);
+//        b12.addActionListener(this);
+//        b13.addActionListener(this);
+//        b14.addActionListener(this);
+//        b15.addActionListener(this);
+//        b16.addActionListener(this);
+//        b17.addActionListener(this);
+
+
+
+confirm calls update seats
+confirm calls close connection
