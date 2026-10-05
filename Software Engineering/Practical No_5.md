@@ -47,7 +47,8 @@ manage user accounts.
 | Event – Venue | Aggregation (held at) | * to 1 |
 
 ## Diagram
-![UML Class Diagram - Extra-Curricular Event Tracking System](<img width="1254" height="1254" alt="class_diagram" src="https://github.com/user-attachments/assets/44a7788a-54fd-4076-a181-795f8432d273" />)
+![UML Class Diagram - Extra-Curricular Event Tracking System](./class_diagram.png)
+
 
 *Fig 5.1: UML Class Diagram - Extra-Curricular Event Tracking System*
 
