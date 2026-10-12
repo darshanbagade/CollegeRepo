@@ -1,0 +1,164 @@
+
+# Practical 7 - UML State Diagram for the Extra-Curricular Event Tracking System
+
+Study and design of a **UML State Diagram** (State Machine Diagram) that models the lifecycle of the **Event** object in an Extra-Curricular Event Tracking System, from its creation by a coordinator to its completion, cancellation or rejection.
+
+| | |
+|---|---|
+| **Student** | Darshan Bagade |
+| **Roll No** | 44 |
+| **Course** | LAB: Software Engineering (23CT1704) |
+| **Semester** | 7th, Session 2026-27 (ODD) |
+| **Department** | Computer Technology |
+| **Practical Number** | 7 |
+| **Course Outcome** | CO3: Model the dynamic behaviour of a software system using UML diagrams such as the State Diagram |
+| **Aim** | To study and draw State Diagram for Extra-Curricular Event Tracking System |
+| **Date** | 21/09/2026 |
+
+---
+
+## Theory
+
+**Unified Modeling Language (UML)** is a standard, general-purpose visual modeling language used to specify, visualize, construct and document the artifacts of a software system. It is maintained by the Object Management Group (OMG).
+
+**State Diagram** (also called State Machine Diagram or Statechart) is a behavioural UML diagram that describes the different states an object passes through during its life and the events that cause it to move from one state to another. It models the dynamic behaviour of a single object or subsystem.
+
+### Purpose
+
+- To model the lifecycle of an object.
+- To show how it responds to events depending on its current state.
+- To specify the valid sequence of states and the conditions for each change.
+- To help in designing and testing event-driven behaviour.
+
+### Important components
+
+| Component | Description |
+|---|---|
+| **State** | A condition or situation in the life of an object during which it satisfies a condition, performs an activity or waits for an event; drawn as a rounded rectangle |
+| **Initial state** | A filled circle showing where the object's life begins |
+| **Final state** | A circle containing a filled dot showing where the life of the object ends |
+| **Transition** | An arrow from a source state to a target state, labelled *event [guard] / action* |
+| **Event** | An occurrence that triggers a transition, such as a user request or a message |
+| **Guard condition** | A Boolean expression in square brackets; the transition fires only if it is true |
+| **Action and activity** | Behaviour executed on a transition (/ action) or inside a state (entry, exit and do activities) |
+| **Self-transition** | A transition that leaves a state and returns to the same state |
+| **Composite state** | A state that contains nested sub-states (not required in this practical) |
+
+### Guidelines for drawing
+
+1. Choose one object whose behaviour is event-driven and has a meaningful lifecycle.
+2. Draw exactly one initial state and show every possible final state.
+3. Name states with nouns or adjectives that describe a condition.
+4. Label every transition with its event and, where needed, a guard and an action.
+5. Make sure every state is reachable and no state is a dead end unless it is final.
+6. Keep the diagram simple and uncluttered.
+
+---
+
+## Procedure
+
+1. **Understand the case study:** read the Extra-Curricular Event Tracking System description and identify the objects whose behaviour changes over time (Event, Registration, Certificate).
+2. **Select the object:** choose the Event object, because it passes through many states between being created by a coordinator and being completed.
+3. **Identify the states:** list the conditions an event can be in - Draft, Pending Approval, Published, Registration Closed, Ongoing, Completed, Rejected and Cancelled.
+4. **Identify the initial and final states:** the event starts when the coordinator creates it, and ends in Completed, Rejected or Cancelled.
+5. **Identify events and transitions:** find the events that move the event from one state to another, such as submission for approval, the admin's decision, student registration, closing of registration, start and end of the event, and cancellation.
+6. **Add guards and actions:** attach guard conditions (for example, admin approves, seats available, seats full or deadline passed) and actions (for example, publishEvent, update seat count, generate certificates) to the transitions and states.
+7. **Draw the diagram:** draw the states as rounded rectangles, add the initial and final states, connect them with labelled transitions and add a figure caption.
+8. **Review:** verify that every state is reachable, every non-final state has an outgoing transition, guards on transitions from the same state do not overlap, and all labels are consistent.
+
+---
+
+## Execution / Implementation
+
+The case study is an Extra-Curricular Event Tracking System in which event coordinators create events that are approved by an admin, published to students for registration, conducted, and finally closed with attendance and certificates. The *Event* object was chosen for the State Diagram. Following the procedure above, eight states were identified.
+
+The event is created in the *Draft* state by the coordinator and is then submitted for approval. An approved event is *Published*; a rejected one ends in *Rejected*. While seats are available, each student registration keeps the event in the Published state, and the event moves to *Registration Closed* when the seats are full or the deadline passes. On the event date it becomes *Ongoing* and, once it ends, *Completed*. The event may be *Cancelled* while it is Published or Registration Closed. The resulting diagram is shown in Fig. 7.1.
+
+### States of the Event object
+
+| State | Description | Activity |
+|---|---|---|
+| Draft | Event has just been created by the coordinator and is still being edited | entry / create Event |
+| Pending Approval | Event has been submitted and is waiting for the admin's decision | do / await admin review |
+| Published | Event is approved and visible to students; registrations are open while seats are available | entry / notify students |
+| Registration Closed | Seats are full or the registration deadline has passed; registrations are locked | entry / lock registrations |
+| Ongoing | Event is taking place; attendance is being tracked | do / track attendance |
+| Completed (final) | Event has ended; attendance is final and certificates are issued | entry / issue certificates |
+| Rejected (final) | Admin rejected the event; the coordinator is notified | entry / notify coordinator |
+| Cancelled (final) | Event was cancelled; registered students are notified | entry / notify attendees |
+
+### Transitions
+
+| From | Event [Guard] / Action | To |
+|---|---|---|
+| Initial | createEvent() | Draft |
+| Draft | submitForApproval() | Pending Approval |
+| Pending Approval | [admin approves] / publishEvent() | Published |
+| Pending Approval | [admin rejects] / notify coordinator | Rejected |
+| Published | registerStudent() [seats available] (self-transition) | Published |
+| Published | [seats full / deadline passed] | Registration Closed |
+| Registration Closed | [event date reached] / startEvent() | Ongoing |
+| Ongoing | endEvent() / generate certificates | Completed |
+| Published | cancelEvent() | Cancelled |
+| Registration Closed | cancelEvent() | Cancelled |
+
+### State Diagram
+
+![Fig 7.1: UML State Diagram of the Event Object](docs/fig7_1.png)
+
+*Fig 7.1: UML State Diagram of the Event Object - Extra-Curricular Event Tracking System*
+
+The same diagram as text (rendered automatically by GitHub using Mermaid):
+
+```mermaid
+stateDiagram-v2
+    direction LR
+    [*] --> Draft : createEvent()
+    Draft --> PendingApproval : submitForApproval()
+    PendingApproval --> Published : [admin approves] / publishEvent()
+    PendingApproval --> Rejected : [admin rejects] / notify coordinator
+    Published --> Published : registerStudent() [seats available]
+    Published --> RegistrationClosed : [seats full / deadline passed]
+    RegistrationClosed --> Ongoing : [event date reached] / startEvent()
+    Ongoing --> Completed : endEvent() / generate certificates
+    Published --> Cancelled : cancelEvent()
+    RegistrationClosed --> Cancelled : cancelEvent()
+    Completed --> [*]
+    Rejected --> [*]
+    Cancelled --> [*]
+
+    Draft : Draft
+    Draft : entry / create Event
+    PendingApproval : Pending Approval
+    PendingApproval : do / await admin review
+    Published : Published
+    Published : entry / notify students
+    RegistrationClosed : Registration Closed
+    RegistrationClosed : entry / lock registrations
+    Ongoing : Ongoing
+    Ongoing : do / track attendance
+    Completed : Completed
+    Completed : entry / issue certificates
+    Rejected : Rejected
+    Rejected : entry / notify coordinator
+    Cancelled : Cancelled
+    Cancelled : entry / notify attendees
+```
+
+The diagram uses standard UML notation: a filled circle for the initial state, rounded rectangles for states with entry and do activities, a circle with a dot for each final state, and arrows labelled with event, guard and action for transitions, including one self-transition on the Published state.
+
+---
+
+## Outcome
+
+The student successfully studied the concepts of UML State Diagrams and drew an appropriate State Diagram for the Extra-Curricular Event Tracking System, showing the states, events, guards and transitions in the lifecycle of an event.
+
+## Conclusion
+
+This practical helped in understanding UML State Diagrams, including how to identify the states of an object, the events and guard conditions that cause transitions, and the initial and final states. The State Diagram of the Event object models the dynamic behaviour of the Extra-Curricular Event Tracking System from the creation of an event to its completion, cancellation or rejection.
+
+---
+
+## Author
+
+**Darshan Bagade** - Roll No 44, Department of Computer Technology
